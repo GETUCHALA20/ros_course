@@ -2,14 +2,16 @@
 # license removed for brevity
 import rospy
 from std_msgs.msg import String
+from std_msgs.msg import Int32
+from random import randint
 def talker():
-	pub = rospy.Publisher('chatter', String, queue_size=10)
+	pub = rospy.Publisher('chatter', Int32, queue_size=10)
 	rospy.init_node('talker', anonymous=True)
-	rate = rospy.Rate(5) # 10hz
+	rate = rospy.Rate(1) # 10hz
 	while not rospy.is_shutdown():
-	        hello_str = "hello chala %s" % rospy.get_time()
-		rospy.loginfo(hello_str)
-		pub.publish(hello_str)
+	        random_no = randint(1,100)
+		rospy.loginfo(random_no)
+		pub.publish(random_no)
 		rate.sleep()
 
 if __name__ == '__main__':
